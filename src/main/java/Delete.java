@@ -16,26 +16,22 @@ public class Delete extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        Process process = Runtime.getRuntime().exec(new String[] {
-                //  "/bin/bash", "-c", "cd /opt/tomcat/webapps/ROOT/uploads && spleeter separate -i "+ fileName +" -p spleeter:2stems -o output"
-                "/bin/bash", "-c", "cd /opt/tomcat/webapps/ROOT && rm -r uploads"
 
-        });
 
-        StringBuilder st = new StringBuilder();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        BufferedReader readerError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-        String line = "";
-
-        while ((line = reader.readLine()) != null) {
-            System.out.println(line);
-            st.append(line+ "  -  \n");
-        }
-
-        while ((line = readerError.readLine()) != null) {
-            System.out.println(line);
-            st.append(line+ "  -  \n");
-        }
+//        StringBuilder st = new StringBuilder();
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//        BufferedReader readerError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+//        String line = "";
+//
+//        while ((line = reader.readLine()) != null) {
+//            System.out.println(line);
+//            st.append(line+ "  -  \n");
+//        }
+//
+//        while ((line = readerError.readLine()) != null) {
+//            System.out.println(line);
+//            st.append(line+ "  -  \n");
+//        }
 
         Response response1= new Response();
         response1.setError(false);
@@ -49,5 +45,12 @@ public class Delete extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         out.print(responseJsonString);
         out.flush();
+
+
+        Process process = Runtime.getRuntime().exec(new String[] {
+                //  "/bin/bash", "-c", "cd /opt/tomcat/webapps/ROOT/uploads && spleeter separate -i "+ fileName +" -p spleeter:2stems -o output"
+                "/bin/bash", "-c", "cd /opt/tomcat/webapps/ROOT && rm -r uploads"
+
+        });
     }
 }
